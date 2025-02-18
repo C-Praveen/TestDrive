@@ -1,0 +1,78 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="(isHandset$ | async) === false">
+      <mat-toolbar color="primary">Car Management</mat-toolbar>
+      <mat-nav-list>
+        <!-- Main navigation links -->
+        <div class="main-links">
+          <a mat-list-item routerLink="/home" routerLinkActive="active-link">
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+          </a>
+          <a mat-list-item routerLink="/cars" routerLinkActive="active-link">
+            <mat-icon>directions_car</mat-icon>
+            <span>Cars</span>
+          </a>
+        </div>
+        
+        <!-- Bottom section with passed/failed cars -->
+        <div class="bottom-links">
+          <mat-divider></mat-divider>
+          <h3 mat-subheader>Car Status</h3>
+          <a mat-list-item routerLink="/passed-cars" routerLinkActive="active-link">
+            <mat-icon>check_circle</mat-icon>
+            <span>Passed Cars</span>
+          </a>
+          <a mat-list-item routerLink="/failed-cars" routerLinkActive="active-link">
+            <mat-icon>cancel</mat-icon>
+            <span>Failed Cars</span>
+          </a>
+          
+          <!-- Profile section at the very bottom -->
+          <mat-divider></mat-divider>
+          <div class="profile-section">
+            <button mat-button [matMenuTriggerFor]="profileMenu" class="profile-button">
+              <mat-icon>account_circle</mat-icon>
+              <span>Profile</span>
+              <mat-icon>arrow_drop_down</mat-icon>
+            </button>
+            <mat-menu #profileMenu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>person</mat-icon>
+                <span>My Profile</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>settings</mat-icon>
+                <span>Settings</span>
+              </button>
+              <mat-divider></mat-divider>
+              <button mat-menu-item>
+                <mat-icon>exit_to_app</mat-icon>
+                <span>Logout</span>
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+      </mat-nav-list>
+    </mat-sidenav>
+    
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <span>Car Management System</span>
+      </mat-toolbar>
+      <!-- Main content -->
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

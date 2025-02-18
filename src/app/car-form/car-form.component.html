@@ -1,0 +1,62 @@
+<div class="car-form-container">
+    <h2>Car Test Management</h2>
+    
+    <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+      <!-- Car Name -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Car Name</mat-label>
+        <input matInput formControlName="carName" placeholder="Enter car name">
+        <mat-error *ngIf="carForm.get('carName')?.errors?.['required'] && carForm.get('carName')?.touched">
+          Car name is required
+        </mat-error>
+      </mat-form-field>
+      
+      <!-- Test Type Dropdown -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Test Type</mat-label>
+        <mat-select formControlName="testType">
+          <mat-option *ngFor="let type of testTypes" [value]="type">
+            {{ type }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="carForm.get('testType')?.errors?.['required'] && carForm.get('testType')?.touched">
+          Test type is required
+        </mat-error>
+      </mat-form-field>
+      
+      <!-- Test Date -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Test Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="testDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="carForm.get('testDate')?.errors?.['required'] && carForm.get('testDate')?.touched">
+          Test date is required
+        </mat-error>
+      </mat-form-field>
+      
+      <!-- Test Time -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Test Time</mat-label>
+        <input matInput type="time" formControlName="testTime">
+        <mat-error *ngIf="carForm.get('testTime')?.errors?.['required'] && carForm.get('testTime')?.touched">
+          Test time is required
+        </mat-error>
+      </mat-form-field>
+      
+      <!-- Location -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Location</mat-label>
+        <input matInput formControlName="location" placeholder="Enter test location">
+        <mat-error *ngIf="carForm.get('location')?.errors?.['required'] && carForm.get('location')?.touched">
+          Location is required
+        </mat-error>
+      </mat-form-field>
+      
+      <!-- Submit Button -->
+      <div class="button-container">
+        <button mat-raised-button color="primary" type="submit">Schedule Test</button>
+        <button mat-button type="button" (click)="carForm.reset()">Reset</button>
+      </div>
+    </form>
+  </div>

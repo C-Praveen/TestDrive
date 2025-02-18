@@ -1,0 +1,36 @@
+<div class="passed-cars-container">
+    <div class="header">
+      <h2>Passed Cars</h2>
+      <p class="subtitle">Vehicles that successfully passed inspection</p>
+    </div>
+  
+    <div class="cards-grid">
+      <div class="car-card" *ngFor="let car of passedCars">
+        <div class="card-header">
+          <div class="success-badge">PASSED</div>
+          <div class="score-badge">{{ car.testScore }}%</div>
+        </div>
+  
+        <div class="card-image-container">
+          <img [src]="car.imageUrl" [alt]="car.name" class="car-image" onerror="this.src='Images/duster1.jpg'">
+        </div>
+  
+        <div class="card-content">
+          <h3 class="car-name">{{ car.name }}</h3>
+          <p class="car-details">{{ car.model }} | {{ car.year }}</p>
+          <p class="passed-date">Passed on: {{ car.passedDate | date:'mediumDate' }}</p>
+          
+          <div class="card-actions">
+            <button class="view-report-button" (click)="viewReport(car.id)">
+              <i class="fa fa-file-text-o"></i> View Report
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="empty-state" *ngIf="passedCars.length === 0">
+      <i class="fa fa-car empty-icon"></i>
+      <p>No passed cars available</p>
+    </div>
+  </div>

@@ -1,0 +1,94 @@
+<div class="vehicle-form-container mat-elevation-z4">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Vehicle Information</mat-card-title>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <form [formGroup]="vehicleForm" (ngSubmit)="onSubmit()">
+          <div class="form-layout">
+            <mat-form-field appearance="outline">
+              <mat-label>Name</mat-label>
+              <input matInput formControlName="name" placeholder="Enter vehicle name">
+              <mat-error *ngIf="nameControl?.invalid">{{ getErrorMessage('name') }}</mat-error>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+              <mat-label>Date</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="date" [max]="maxDate">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="dateControl?.invalid">{{ getErrorMessage('date') }}</mat-error>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+              <mat-label>Model</mat-label>
+              <input matInput formControlName="model" placeholder="Enter vehicle model">
+              <mat-error *ngIf="modelControl?.invalid">{{ getErrorMessage('model') }}</mat-error>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+              <mat-label>Color</mat-label>
+              <input matInput formControlName="color" placeholder="Enter vehicle color">
+              <mat-error *ngIf="colorControl?.invalid">{{ getErrorMessage('color') }}</mat-error>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+              <mat-label>Engine Type</mat-label>
+              <mat-select formControlName="engineType">
+                <mat-option *ngFor="let type of engineTypes" [value]="type">{{ type }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="engineTypeControl?.invalid">{{ getErrorMessage('engineType') }}</mat-error>
+            </mat-form-field>
+          </div>
+          
+          <div class="photo-upload-section">
+            <p class="mat-body-1">Vehicle Photo</p>
+            
+            <div class="photo-upload-container" 
+                 [class.has-image]="previewUrl"
+                 (click)="fileInput.click()">
+              <input #fileInput type="file" 
+                    style="display: none" 
+                    accept="image/*"
+                    (change)="onFileSelected($event)">
+              
+              <div class="upload-placeholder" *ngIf="!previewUrl">
+                <mat-icon>add_photo_alternate</mat-icon>
+                <p class="mat-body-1">Click to upload image</p>
+              </div>
+              
+              <div class="image-preview" *ngIf="previewUrl">
+                <img [src]="previewUrl" alt="Vehicle preview">
+                <button type="button" mat-mini-fab color="warn" 
+                        class="remove-button" 
+                        (click)="removeImage(); $event.stopPropagation()">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Description</mat-label>
+            <textarea matInput 
+                      formControlName="description" 
+                      rows="4" 
+                      placeholder="Describe the vehicle"></textarea>
+            <mat-hint align="end">{{ descriptionControl?.value?.length || 0 }}/500</mat-hint>
+            <mat-error *ngIf="descriptionControl?.invalid">{{ getErrorMessage('description') }}</mat-error>
+          </mat-form-field>
+          
+          <div class="form-actions">
+            <button type="button" mat-stroked-button color="warn">Cancel</button>
+            <button type="submit" 
+                   mat-raised-button 
+                   color="primary" 
+                   [disabled]="vehicleForm.invalid">
+              Save Vehicle
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
