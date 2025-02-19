@@ -20,7 +20,7 @@ interface Car {
 export class CarsComponent implements OnInit {
   cars: Car[] = [];
 
-  constructor(private route:Router) { }
+  constructor(private readonly route:Router) { }
 
   ngOnInit(): void {
     // Mock data - in a real app, this would come from a service
@@ -100,5 +100,9 @@ export class CarsComponent implements OnInit {
     // Implement test drive scheduling logic
     // alert(`Test drive request submitted for ${car.brand} ${car.model}`);
     this.route.navigate(['car-form']);
+  }
+
+  addcar(){
+    this.route.navigate(['vehicle-form']);
   }
 }

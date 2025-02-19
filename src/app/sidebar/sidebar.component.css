@@ -26,15 +26,19 @@ mat-nav-list {
   height: calc(100% - 64px); /* Adjust for toolbar height */
 }
 
+
+
 .main-links {
   flex: 1;
 }
+
 
 .bottom-links {
   margin-top: auto;
 }
 
 .profile-section {
+  margin-bottom: 0px !important;
   padding: 16px;
 }
 
@@ -43,12 +47,14 @@ mat-nav-list {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  color: cyan;
 }
 
 .profile-button span {
   margin: 0 8px;
   flex: 1;
   text-align: left;
+  color: cyan;
 }
 
 .active-link {

@@ -3,57 +3,49 @@
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="(isHandset$ | async) === false">
-      <mat-toolbar color="primary">Car Management</mat-toolbar>
+      <br>
+      <mat-toolbar color="primary" style="color: cyan; font-size: xx-large;">Car Management</mat-toolbar>
       <mat-nav-list>
         <!-- Main navigation links -->
         <div class="main-links">
           <a mat-list-item routerLink="/home" routerLinkActive="active-link">
-            <mat-icon>home</mat-icon>
-            <span>Home</span>
+            <mat-icon style="color: cyan;">home</mat-icon>
+            <span style="    position: relative;
+            top: -5px;
+            left: 10px;
+            ">Home</span>
           </a>
+          <br>
           <a mat-list-item routerLink="/cars" routerLinkActive="active-link">
-            <mat-icon>directions_car</mat-icon>
-            <span>Cars</span>
+            <mat-icon style="color: cyan;">directions_car</mat-icon>
+            <span style="    position: relative;
+            top: -5px;
+            left: 10px;">Cars</span>
           </a>
         </div>
-        
+        <br>
         <!-- Bottom section with passed/failed cars -->
         <div class="bottom-links">
           <mat-divider></mat-divider>
-          <h3 mat-subheader>Car Status</h3>
+          <h3 mat-subheader style="color: cyan;">Car Status</h3>
+          <br>
           <a mat-list-item routerLink="/passed-cars" routerLinkActive="active-link">
-            <mat-icon>check_circle</mat-icon>
-            <span>Passed Cars</span>
+            <mat-icon style="color: cyan;">check_circle</mat-icon>
+            <span style="    position: relative;
+            top: -5px;
+            left: 10px;">Passed Cars</span>
           </a>
+          <br>
           <a mat-list-item routerLink="/failed-cars" routerLinkActive="active-link">
-            <mat-icon>cancel</mat-icon>
-            <span>Failed Cars</span>
+            <mat-icon style="color: cyan;">cancel</mat-icon>
+            <span style="    position: relative;
+            top: -5px;
+            left: 10px;">Failed Cars</span>
           </a>
-          
+          <br>
           <!-- Profile section at the very bottom -->
           <mat-divider></mat-divider>
-          <div class="profile-section">
-            <button mat-button [matMenuTriggerFor]="profileMenu" class="profile-button">
-              <mat-icon>account_circle</mat-icon>
-              <span>Profile</span>
-              <mat-icon>arrow_drop_down</mat-icon>
-            </button>
-            <mat-menu #profileMenu="matMenu">
-              <button mat-menu-item>
-                <mat-icon>person</mat-icon>
-                <span>My Profile</span>
-              </button>
-              <button mat-menu-item>
-                <mat-icon>settings</mat-icon>
-                <span>Settings</span>
-              </button>
-              <mat-divider></mat-divider>
-              <button mat-menu-item>
-                <mat-icon>exit_to_app</mat-icon>
-                <span>Logout</span>
-              </button>
-            </mat-menu>
-          </div>
+          <br>
         </div>
       </mat-nav-list>
     </mat-sidenav>
@@ -69,6 +61,28 @@
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
         <span>Car Management System</span>
+        <div class="profile-section" style="position: absolute; right: 15px;">
+          <button mat-button [matMenuTriggerFor]="profileMenu" class="profile-button">
+            <mat-icon style="color: cyan;">account_circle</mat-icon>
+            <span style="color: cyan;">Profile</span>
+            <mat-icon style="color: cyan;">arrow_drop_down</mat-icon>
+          </button>
+          <mat-menu #profileMenu="matMenu">
+            <button mat-menu-item>
+              <mat-icon style="color: cyan;">person</mat-icon>
+              <span style="color: cyan;">My Profile</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon style="color: cyan;">settings</mat-icon>
+              <span style="color: cyan;">Settings</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item>
+              <mat-icon style="color: cyan;">exit_to_app</mat-icon>
+              <span style="color: cyan;">Logout</span>
+            </button>
+          </mat-menu>
+        </div>
       </mat-toolbar>
       <!-- Main content -->
       <div class="content">
